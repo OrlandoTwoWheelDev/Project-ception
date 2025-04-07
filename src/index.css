@@ -1,0 +1,17 @@
+body {
+  background-color: aquamarine;
+}
+
+button {
+  background-color: #d1a21f; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
