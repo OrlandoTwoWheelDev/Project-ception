@@ -11,11 +11,13 @@ const pool = new Pool({
 });
 
 const { createUser, createUsers } = require('./users.cjs');
+const { createTool } = require('./tool.cjs');
 
 const dropTables = async() => {
   try{
     await pool.query(`
       DROP TABLE IF EXISTS users CASCADE;
+      DROP TABLE IF EXISTS tools CASCADE;
       `)
   }catch(err){
     console.error('Error dropping tables', err);
@@ -32,7 +34,13 @@ const createTables = async() => {
       email VARCHAR(50),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
+      );
+
+      CREATE TABLE tools (
+      id SERIAL PRIMARY KEY,
+      tool_name VARCHAR(50),
+      tool_description TEXT,
+      tool_link TEXT)
       `)
   }catch(err){
     console.error('Error creating tables', err);
@@ -67,5 +75,14 @@ const alignAnPrime = async () => {
 
   await createUsers();
   console.log('Created Users');
+
+  await createTool('Refrigerant Temp and Pressure Guages', 'Tool used to measure refrigerant temperature and pressures',
+     'https://www.fieldpiece.com/product/jl3kh6-job-link-probes-charging-and-air-kit/');
+  await createTool('Digital Manometer', 'Tool used to measure airflow static pressure',
+     'https://www.fieldpiece.com/product/jl3km2-job-link-system-dual-port-manometer-probe-kit/');
+  await createTool('Digital Multimeter', 'Tool used to measure voltage, current, and resistance',
+     'https://www.fieldpiece.com/product/jl3km1-job-link-system-multimeter-probe-kit/');
+  console.log('Created Tools');
+
 };
 alignAnPrime();
