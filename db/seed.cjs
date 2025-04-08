@@ -10,7 +10,7 @@ const pool = new Pool({
   ssl: false,
 });
 
-const { createUser, createUsers } = require('./users.cjs');
+const { createUsers } = require('./users.cjs');
 const { createTool } = require('./tool.cjs');
 
 const dropTables = async() => {
@@ -58,6 +58,11 @@ const connectDB = async () => {
 }
 connectDB();
 
+const users = [
+  { username: 'user1', password: 'password1', email: 'user1@example.com' },
+  { username: 'user2', password: 'password2', email: 'user2@example.com' },
+];
+
 const alignAnPrime = async () => {
   await pool.connect();
   console.log('Connected to DB');
@@ -68,13 +73,8 @@ const alignAnPrime = async () => {
   await createTables();
   console.log('Created Tables');
 
-  await createUser('testUser1', 'hashedPassword1', 'test1@example.com');
-  
-  console.log('User Created');
-
-
-  await createUsers();
-  console.log('Created Users');
+  await Promise.all(users.map(user => createUsers(user.username, user.password, user.email)));
+  console.log('All users created');
 
   await createTool('Refrigerant Temp and Pressure Guages', 'Tool used to measure refrigerant temperature and pressures',
      'https://www.fieldpiece.com/product/jl3kh6-job-link-probes-charging-and-air-kit/');
@@ -83,6 +83,6 @@ const alignAnPrime = async () => {
   await createTool('Digital Multimeter', 'Tool used to measure voltage, current, and resistance',
      'https://www.fieldpiece.com/product/jl3km1-job-link-system-multimeter-probe-kit/');
   console.log('Created Tools');
-
 };
+
 alignAnPrime();

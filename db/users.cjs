@@ -6,33 +6,19 @@ const users = [
   { username: 'testUser2', password: 'hashedPassword2', email: 'test2@example.com' },
 ];
 
-const createUser = async (username, password, email) => {
+const createUsers = async (username, password, email) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const { rows } = await pool.query(`
       INSERT INTO users (username, password_hash, email)
-      VALUES ($1, $2, $3);
-    `, [username, hashedPassword, email]);
-    
-    console.log(`User ${username} created successfully`);
+      VALUES ($1, $2, $3)
+      RETURNING *;
+      `, [username, hashedPassword, email]);
     return rows[0];
   } catch (err) {
-    console.error(`Error creating user ${username}`, err);
+    console.error('Error Creating User', err);
   }
-};
-
-const createUsers = async () => {
-  try {
-    const { rows } = await Promise.all(
-      users.map(users => createUser(users.username, users.password, users.email))
-    );
-    
-    console.log('All users created successfully');
-    return rows;
-  } catch (err) {
-    console.error('Error creating users', err);
-  }
-};
+}
 
 const getAllUsers = async () => {
   try {
@@ -121,8 +107,7 @@ const loginWithToken = async (token) => {
   }
 };
 
-module.exports = { 
-  createUser, 
+module.exports = {
   createUsers, 
   getAllUsers,
   getUserById,

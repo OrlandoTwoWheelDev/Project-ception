@@ -24,6 +24,10 @@ const LogInRegister = () => {
           <label htmlFor="newPassword">New Password:</label>
           <input type="password" id="newPassword" name="newPassword" required />
         </div>
+        <div>
+          <label htmlFor="newEmail">New Email:</label>
+          <input type="email " id="newEmail" name="newEmail" required />
+        </div>
         <button type="submit">Register</button>
       </form>
     </div>

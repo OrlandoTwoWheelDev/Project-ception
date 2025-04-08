@@ -2,6 +2,13 @@ body {
   background-color: aquamarine;
 }
 
+nav {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  
+}
+
 button {
   background-color: #d1a21f; /* Green */
   color: white;
@@ -14,4 +21,9 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+img {
+  max-width: 45%;
+  height: auto;
 }
