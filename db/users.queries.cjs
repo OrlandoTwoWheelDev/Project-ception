@@ -52,7 +52,7 @@ const getUserByUsername = async (username) => {
   }catch (err) {
     console.error('Error Getting User By Username', err);
   }
-}
+};
 
 const getUserByEmail = async (email) => {
   try {
@@ -60,20 +60,9 @@ const getUserByEmail = async (email) => {
       SELECT * FROM users
       WHERE email = $1;
       `, [email]);
-  }catch (err) {
-    console.error('Error Getting User By Email', err);
-  }
-}
-
-const getUserByUsernameAndPassword = async (username, password) => {
-  try {
-    const { rows } = await pool.query(`
-      SELECT * FROM users
-      WHERE username = $1 AND password_hash = $2;
-      `, [username, password]);
       return rows[0];
   }catch (err) {
-    console.error('Error Getting User By Username And Password', err);
+    console.error('Error Getting User By Email', err);
   }
 };
 
@@ -113,7 +102,6 @@ module.exports = {
   getUserById,
   getUserByUsername,
   getUserByEmail,
-  getUserByUsernameAndPassword,
   authenticateUser,
   loginWithToken
 };

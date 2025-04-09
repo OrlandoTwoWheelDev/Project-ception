@@ -1,11 +1,20 @@
-const express = require('express')
-const router = express.Router()
-const usersController = require('../controllers/users')
+const express = require('express');
+const router = express.Router();
+const { registerUser, loginUser } = require('../controllers/users.cjs');
 
-router.post('/register', usersController.registerUser)
+router.get('/loginRegister', (req, res) => {
+  res.status(200).json({ message: 'GET request successful' });
+});
 
-router.post('/login', usersController.loginUser)
 
-router.get('/profile', authMiddleware, usersController.getProfile)
+router.post('/loginRegister', async (req, res) => {
+  if (req.body.username && req.body.password && req.body.email) {
+    await registerUser(req, res);
+  } else if (req.body.username && req.body.password) {
+    await loginUser(req, res);
+  } else {
+    res.status(400).json({ message: 'Invalid data' });
+  }
+});
 
-module.exports = router
+module.exports = router;
