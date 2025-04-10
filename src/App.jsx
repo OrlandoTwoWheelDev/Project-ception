@@ -13,11 +13,11 @@ const App = () => {
       <header>
         <nav>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li><button onClick={() => window.location.href = '/'}>Home</button></li>
-            <li><button onClick={() => window.location.href = '/about'}>About Me</button></li>
-            <li><button onClick={() => window.location.href = '/info'}>HVAC Info</button></li>
-            <li><button onClick={() => window.location.href = '/demo'}>The Demo</button></li>
-            <li><button onClick={() => window.location.href = '/loginRegister'}>Login-Register</button></li>
+            <li><button className='button' onClick={() => window.location.href = '/'}>Home</button></li>
+            <li><button className='button' onClick={() => window.location.href = '/about'}>About Me</button></li>
+            <li><button className='button' onClick={() => window.location.href = '/info'}>HVAC Info</button></li>
+            <li><button className='button' onClick={() => window.location.href = '/demo'}>The Demo</button></li>
+            <li><button className='button' onClick={() => window.location.href = '/loginRegister'}>Login-Register</button></li>
           </ul>
         </nav>
       </header>
@@ -34,9 +34,9 @@ const App = () => {
         </Routes>
       </main>
 
-      <footer>
+      <footer style={{ textAlign: 'center' }}>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
-          <li><button onClick={() => window.location.href = '/contact'}>Contact Me</button></li>
+          <li><button className='button' onClick={() => window.location.href = '/contact'}>Contact Me</button></li>
         </ul>
       </footer>
     </Router>

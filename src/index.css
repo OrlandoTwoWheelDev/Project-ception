@@ -1,34 +1,122 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 body {
-  background-color: aquamarine;
+  font-family: 'Arial', sans-serif;
+  background-image: url('images/hvacbackground.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
 }
 
-nav {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  
+header {
+  background: linear-gradient(to right, rgba(88, 31, 31, 0.92), rgba(36, 149, 36, 0.707) ,#308bc4);
+  padding: 30px;
+  text-align: center;
 }
 
-button {
-  background-color: #d1a21f; /* Green */
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  list-style-type: none;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #0fb414;
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-button:hover {
-  background-color: #45a049;
+.button:hover {
+  background-color: #215f25;
 }
 
-img {
-  max-width: 45%;
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(112, 179, 235, 0.7);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+}
+
+.card h2 {
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.card img {
+  width: 100%;
   height: auto;
+  border-radius: 10px;
 }
+
+.card p {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.hvac-card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  background-color: rgba(112, 179, 235, 0.9);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+  margin: auto;
+}
+
+.hvac-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.hvac-text {
+  flex: 1;
+  padding-right: 20px;
+  width: 50%;
+}
+
+.hvac-images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50%;
+}
+
+.hvac-images img {
+  width: 70%;
+  margin-bottom: 10px; /* Space between images */
+}
+
+section {
+  margin-top: 20px;
+}
+
