@@ -1,8 +1,14 @@
-const { pool } = require('../db/index.cjs');
+import { pool } from '../db/index';
+import { Tool } from '../db/tool';
+import { Request, Response} from 'express';
 
-const getAllTools = async (req, res) => {
+interface ToolParams {
+  toolId: string;
+}
+
+const getAllTools = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query('SELECT * FROM tools');
+    const result = await pool.query<Tool>('SELECT * FROM tools');
     res.status(200).json(result.rows);
   } catch (error) {
     console.error(error);
@@ -10,10 +16,10 @@ const getAllTools = async (req, res) => {
   }
 };
 
-const getToolById = async (req, res) => {
+const getToolById = async (req: Request<ToolParams>, res: Response) => {
   try {
     const { toolId } = req.params;
-    const result = await pool.query('SELECT * FROM tools WHERE id = $1', [toolId]);
+    const result = await pool.query<Tool>('SELECT * FROM tools WHERE id = $1', [toolId]);
     
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Tool not found' });
@@ -26,7 +32,7 @@ const getToolById = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   getAllTools,
   getToolById,
 };

@@ -1,12 +1,22 @@
-const { pool } = require('./index.cjs');
-const bcrypt = require('bcrypt');
+import { pool } from './index';
+import bcrypt from 'bcrypt';
 
 const users = [
   { username: 'testUser1', password: 'hashedPassword1', email: 'test1@example.com' },
   { username: 'testUser2', password: 'hashedPassword2', email: 'test2@example.com' },
 ];
 
-const createUsers = async (username, password, email) => {
+interface User {
+  id: number;
+  username: string;
+  password_hash: string;
+  email: string;
+  token?: string;
+  created_at?: Date;
+  updated_at?: Date;
+};
+
+const createUsers = async (username: string, password: string, email: string): Promise<User | undefined> => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const { rows } = await pool.query(`
@@ -14,24 +24,25 @@ const createUsers = async (username, password, email) => {
       VALUES ($1, $2, $3)
       RETURNING *;
       `, [username, hashedPassword, email]);
-    return rows[0];
+    return rows[0] as User;
   } catch (err) {
     console.error('Error Creating User', err);
+    return undefined;
   }
-}
+};
 
 const getAllUsers = async () => {
   try {
     const { rows } = await pool.query(`
       SELECT * FROM users;
       `);
-      return rows;
+      return rows as User[];
   }catch (err) {
     console.error('Error Getting All Users', err);
   }
 };
 
-const getUserById = async (id) => {
+const getUserById = async (id: number): Promise<User | undefined> => {
   try {
     const { rows } = await pool.query(`
       SELECT * FROM users WHERE id = $1;
@@ -42,19 +53,19 @@ const getUserById = async (id) => {
   }
 };
 
-const getUserByUsername = async (username) => {
+const getUserByUsername = async (username: string): Promise<User | undefined> => {
   try{
     const { rows } = await pool.query(`
       SELECT * FROM users 
       WHERE username = $1;
       `, [username]);
-      return rows[0];
+      return rows[0] as User;
   }catch (err) {
     console.error('Error Getting User By Username', err);
   }
 };
 
-const getUserByEmail = async (email) => {
+const getUserByEmail = async (email: string): Promise<User | undefined> => {
   try {
     const { rows } = await pool.query(`
       SELECT * FROM users
@@ -66,7 +77,7 @@ const getUserByEmail = async (email) => {
   }
 };
 
-const authenticateUser = async (username, password) => {
+const authenticateUser = async (username: string, password: string): Promise<User | undefined> => {
   try {
     const user = await getUserByUsername(username);
     if (!user) {
@@ -84,7 +95,7 @@ const authenticateUser = async (username, password) => {
   }
 };
 
-const loginWithToken = async (token) => {
+const loginWithToken = async (token: string): Promise<User | undefined> => {
   try {
     const { rows } = await pool.query(`
       SELECT * FROM users
@@ -96,7 +107,7 @@ const loginWithToken = async (token) => {
   }
 };
 
-module.exports = {
+export {
   createUsers, 
   getAllUsers,
   getUserById,
