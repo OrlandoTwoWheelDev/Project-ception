@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const LogInRegister = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLoginSubmit = async (e) => {
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const form = e.target as HTMLFormElement;
     const formData = {
-      username: e.target.username.value,
-      password: e.target.password.value,
+      username: form.username.value,
+      password: form.password.value,
     }
 
     console.log('Logging in with:', formData);
@@ -34,13 +36,14 @@ const LogInRegister = () => {
     }
   }
 
-  const handleRegisterSubmit = async (e) => {
+  const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const form = e.target as HTMLFormElement;
     const formData = {
-      username: e.target.newUsername.value,
-      password: e.target.newPassword.value,
-      email: e.target.newEmail.value,
+      username: form.newUsername.value,
+      password: form.newPassword.value,
+      email: form.newEmail.value,
     }
 
     console.log('Registering with:', formData);

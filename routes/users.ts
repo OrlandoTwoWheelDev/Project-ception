@@ -1,13 +1,15 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { registerUser, loginUser } = require('../controllers/users.cjs');
+import { loginUser, registerUser } from '../controllers/users';
+import { Request, Response } from 'express';
 
-router.get('/loginRegister', (req, res) => {
+
+router.get('/loginRegister', (req: Request, res: Response) => {
   res.status(200).json({ message: 'GET request successful' });
 });
 
 
-router.post('/loginRegister', async (req, res) => {
+router.post('/loginRegister', async (req: Request, res: Response) => {
   if (req.body.username && req.body.password && req.body.email) {
     await registerUser(req, res);
   } else if (req.body.username && req.body.password) {
@@ -17,4 +19,5 @@ router.post('/loginRegister', async (req, res) => {
   }
 });
 
-module.exports = router;
+export { router as usersRoutes };
+export { router };

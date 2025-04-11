@@ -1,3 +1,5 @@
+import React from "react";
+
 const HvacInfo = () => {
   return (
     <div className="hvac-card">
