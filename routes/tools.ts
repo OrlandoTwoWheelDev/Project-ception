@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { getAllTools, getToolById } from '../controllers/tools';
+import { getAllTools, getToolById } from '../controllers/tools.js';
 import { Request, Response } from 'express';
 
 interface ToolParams {

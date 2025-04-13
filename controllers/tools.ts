@@ -1,5 +1,5 @@
-import { pool } from '../db/index';
-import { Tool } from '../db/tool';
+import { pool } from '../db/index.js';
+import { Tool } from '../db/tool.js';
 import { Request, Response} from 'express';
 
 interface ToolParams {

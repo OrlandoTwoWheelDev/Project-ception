@@ -68,8 +68,8 @@ const LogInRegister = () => {
   }
 
   return (
-    <div>
-      <h1>Login/Register</h1>
+    <div className='login-register'>
+      <h1>Login</h1>
 
       {error && <div className="error-message">{error}</div>}
 

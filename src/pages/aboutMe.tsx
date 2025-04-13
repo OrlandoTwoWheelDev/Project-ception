@@ -2,16 +2,24 @@ import React from 'react';
 
 const AboutMe = () => {
   return (
-    <div>
-      <h1>About Me</h1>
-      <p>Hi, I'm Orlando. I used to be a HVAC Service Technician.</p>
-      <p>I have a passion for hvac, learning new video games, diving deeper into my new career as a Full stack developer.</p>
-      <p>This project is me sprouting out after a successful coding bootcamp at FullStack Academy. For the project I wanted
-         to touch all the basics, and learn new (to me) tech on the fly! I originally started out with JavaScript, but eventually
-         decided on something a little more risky... TypeScript, while learning it on the fly. This also ushered in other tech stack 
-         changes, such as NextJS. I'm storing my data in PostgreSQL, using Vite for quick development, along with Next.js as the 
-         framework. </p>
-    </div>
+    <div className='about-me'>
+  <h1>About Me</h1>
+  <p>Hi, Im Orlando. I used to be an HVAC Service Technician.</p>
+  <p>Now, Im diving into the world of Full-Stack Development. My journey began with learning JavaScript, and now Im learning TypeScript on the fly!</p>
+  <h2>Tech I Used</h2>
+  <ul>
+    <li>JavaScript</li>
+    <li>TypeScript</li>
+    <li>React</li>
+    <li>Node.js</li>
+    <li>Express</li>
+    <li>JSON Webtoken</li>
+    <li>Bcrypt</li>
+    <li>CSS</li>
+  </ul>
+  <p>This project was created to solidify my learning by building something from scratch and using new (to me) tech.</p>
+</div>
+
   );
 }
 
