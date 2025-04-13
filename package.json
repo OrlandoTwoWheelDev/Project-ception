@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf node_modules dist package-lock.json && npm install",
-    "seed": "node --loader ts-node/esm db/seed.ts"
+    "seed": "node --loader ts-node/esm db/seed.ts",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
