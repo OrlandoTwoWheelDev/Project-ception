@@ -2,9 +2,9 @@ import React from "react";
 
 const ContactMe = () => {
   return (
-    <div>
+    <div className="contact-me">
       <h1>Contact Me</h1>
-      <p>If you have any questions, feel free to reach out!</p>
+      <h3>If you have any questions, feel free to reach out!</h3>
       <form>
         <label>
           Name:
@@ -18,7 +18,7 @@ const ContactMe = () => {
         <br />
         <label>
           Message:
-          <textarea name="message"></textarea>
+          <input name="message"></input>
         </label>
         <br />
         <button type="submit">Submit</button>

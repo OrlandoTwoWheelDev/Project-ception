@@ -1,10 +1,6 @@
-import { pool } from './index';
+import { pool } from './index.js';
 import bcrypt from 'bcrypt';
 
-const users = [
-  { username: 'testUser1', password: 'hashedPassword1', email: 'test1@example.com' },
-  { username: 'testUser2', password: 'hashedPassword2', email: 'test2@example.com' },
-];
 
 interface User {
   id: number;

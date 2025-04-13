@@ -1,4 +1,4 @@
-import { pool } from './index';
+import { pool } from './index.js';
 
 export interface Tool {
   id: number;

@@ -3,14 +3,15 @@ import React from "react";
 const HvacInfo = () => {
   return (
     <div className="hvac-card">
+      <h1>HVAC Information</h1>
       <div className="hvac-content">
         <div className="hvac-text">
-          <h1>HVAC Information</h1>
+          
           <h3>For the most part, people don't know they have hvac issues until it's too late!</h3>
           <p>Here you can find details about heating, ventilation, and air conditioning systems!</p>
 
           <section>
-            <h3>Maintenance</h3>
+            <h2>Maintenance</h2>
             
             <p>
               Maintenance is a critical aspect of HVAC systems. Generally there are two types of maintenance:
@@ -78,7 +79,7 @@ const HvacInfo = () => {
           </section>
 
           <section>
-            <h3>HVAC Technician Maintenance</h3>
+            <h2>HVAC Technician Maintenance</h2>
             
             <p>
               The HVAC technician is the one who comes out to your home and performs maintenance on the system, generally twice a year. The standard maintenance practices
@@ -131,7 +132,7 @@ const HvacInfo = () => {
           </section>
 
           <section>
-            <h3>Repairs</h3>
+            <h2>Repairs</h2>
 
             <p>
               The most unfortunate aspects of HVAC systems is that they can break down, it's only a matter of when. When it happens, it can be stressful, and you may not know what to do. The first step is to find
@@ -170,7 +171,7 @@ const HvacInfo = () => {
           </section>
 
           <section>
-            <h3>Preventative Measures</h3>
+            <h2>Preventative Measures</h2>
 
             <p>
               There are a multitude of products out there to be considered as preventative measures. The first product just cost you some of your time and effort, and that is the personal maintenance you do 
