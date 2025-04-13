@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import express from 'express';
-import path from 'path';
 const app = express();
 import cors from 'cors';
 import { router as toolsRoutes} from './routes/tools.js';
@@ -9,7 +8,6 @@ import { router as pagesRoutes} from './routes/pages.js';
 import triviaRoutes from './routes/trivia.js';
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(cors()); 
  
