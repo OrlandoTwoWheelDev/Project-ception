@@ -15,7 +15,7 @@ app.use('/api/tools', toolsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api', triviaRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;
