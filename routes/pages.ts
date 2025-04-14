@@ -2,9 +2,8 @@ import express from 'express'
 const router = express.Router()
 import { Request, Response } from 'express';
 
-router.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the Tools Library API!')
+router.get('/home', (req: Request, res: Response) => {
+  res.send('Welcome to the Home Page!')
 })
 
-export { router as pagesRoutes };
-export { router };
+export default router;

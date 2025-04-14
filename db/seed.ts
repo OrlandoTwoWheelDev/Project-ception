@@ -79,16 +79,12 @@ const users = [
 
 const alignAnPrime = async () => {
   await pool.connect();
-  console.log('Connected to DB');
 
   await dropTables();
-  console.log('Dropped Tables');
 
   await createTables();
-  console.log('Created Tables');
 
   await Promise.all(users.map(user => createUsers(user.username, user.password, user.email)));
-  console.log('All users created');
 
   await createTool('Refrigerant Temp and Pressure Guages', 'Tool used to measure refrigerant temperature and pressures',
      'https://www.fieldpiece.com/product/jl3kh6-job-link-probes-charging-and-air-kit/');
@@ -96,7 +92,6 @@ const alignAnPrime = async () => {
      'https://www.fieldpiece.com/product/jl3km2-job-link-system-dual-port-manometer-probe-kit/');
   await createTool('Digital Multimeter', 'Tool used to measure voltage, current, and resistance',
      'https://www.fieldpiece.com/product/jl3km1-job-link-system-multimeter-probe-kit/');
-  console.log('Created Tools');
 
   await createTriviaCard('What is important to a HVAC system every month?', 'Air filters', 'Maintenance', 10);
   await createTriviaCard('What is the most common refrigerant used in HVAC systems?', 'R-410A', 'Refrigerants', 20);
@@ -108,7 +103,6 @@ const alignAnPrime = async () => {
   await createTriviaCard('How many volts are most HVAC systems?', '24 volts and 240 volts', 'Electrical', 80);
   await createTriviaCard('True or False: UV lights sterilize the air in your HVAC system.', 'True', 'General knowledge', 90);
   await createTriviaCard('True or False: HVAC systems never need to be replaced.', 'False', 'General knowledge', 100);
-  console.log('Created Trivia Cards');
 };
 
 alignAnPrime();

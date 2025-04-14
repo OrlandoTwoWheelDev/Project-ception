@@ -15,17 +15,17 @@ const LogInRegister = () => {
       password: form.password.value,
     }
 
-    console.log('Logging in with:', formData);
+    console.log('Logging in with username:', formData.username);
 
     try {
-      const response = await fetch('/loginRegister', {
+      const response = await fetch('/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        navigate('/home');
+        navigate('/');
       } else {
         const result = await response.json();
         setError(result.message || 'Login failed');
@@ -46,17 +46,17 @@ const LogInRegister = () => {
       email: form.newEmail.value,
     }
 
-    console.log('Registering with:', formData);
+    console.log('Registering with username:', formData.username);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/loginRegister', {
+      const response = await fetch('/api/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        navigate('/home');
+        navigate('/');
       } else {
         const result = await response.json();
         setError(result.message || 'Registration failed');
