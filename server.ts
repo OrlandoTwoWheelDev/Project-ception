@@ -29,9 +29,9 @@ app.use('/api/trivia', triviaRoutes);
 
 app.use(express.static(path.join(__dirname, 'dist', 'client')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
+});
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
