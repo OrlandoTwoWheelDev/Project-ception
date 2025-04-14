@@ -2,12 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "node16",
-    "module": "node16",
+    "module": "commonjs",
     "outDir": "./dist",
     "noEmit": false,
     "types": ["node"],
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "target": "es6"
   },
   "include": [
     "server.ts",
