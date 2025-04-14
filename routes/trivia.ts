@@ -3,8 +3,8 @@ import { getRandomTrivia, createTriviaCard } from '../controllers/trivia.js';
 
 const router = express.Router();
 
-router.get('/trivia/random', getRandomTrivia);
+router.get('/random', getRandomTrivia);
 
-router.post('/trivia', createTriviaCard);
+router.post('/create', createTriviaCard);
 
 export default router;

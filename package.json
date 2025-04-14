@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node --loader ts-node/esm server.ts\"",
-    "build": "tsc && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "clean": "rm -rf node_modules dist package-lock.json && npm install",
+    "dev": "vite",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "tsc --project tsconfig.node.json",
+    "build": "npm run build:server && npm run build:client",
+    "start": "node dist/server.js",
+    "postinstall": "npm run build",
     "seed": "node --loader ts-node/esm db/seed.ts",
-    "start": "node dist/server.js"
+    "clean": "rm -rf node_modules dist package-lock.json && npm install"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -69,6 +70,5 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1",
     "vite": "^6.2.0"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }

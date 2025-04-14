@@ -7,11 +7,10 @@ interface ToolParams {
   toolId: string;
 }
 
-router.get('/', getAllTools);
+router.get('/all', getAllTools);
 
 router.get('/:toolId', (req: Request<ToolParams>, res: Response) => {
   getToolById(req, res);
 });
 
-export { router as toolsRoutes };
-export { router };
+export default router;

@@ -2,7 +2,7 @@ import { pool } from './index.js';
 import bcrypt from 'bcrypt';
 
 
-interface User {
+export default interface User {
   id: number;
   username: string;
   password_hash: string;

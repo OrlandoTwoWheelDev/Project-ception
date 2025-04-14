@@ -1,29 +1,26 @@
-import { createUsers, getUserByUsername } from '../db/users.queries.js'
+import { getUserByUsername } from '../db/users.queries.js'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
+import { pool } from '../db/index.js';
 
 const registerUser = async (req: Request, res: Response) => {
   const { username, password, email } = req.body;
+  if (!username || !password || !email) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
 
   try {
-    const userExists = await getUserByUsername(username);
-
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await createUsers(username, hashedPassword, email);
-
-    if (!newUser) {
-      return res.status(500).json({ message: 'Failed to create user' });
-    }
-
-    res.status(200).json({ message: 'User registered', user: newUser.username });
+    const query = 'INSERT INTO users (username, password_hash, email) VALUES ($1, $2, $3) RETURNING id';
+    const values = [username, hashedPassword, email];
+    const result = await pool.query(query, values);
+    
+    const newUserId = result.rows[0].id;
+    res.status(201).json({ message: 'User created successfully', userId: newUserId });
   } catch (error) {
-    res.status(500).json({ message: 'Server Error' });
-    console.error('Error registering user', error);
+    console.error('Error registering user:', error);
+    res.status(500).json({ message: 'Error registering user' });
   }
 };
 
