@@ -2,15 +2,15 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { fileURLToPath } from 'url';
+// import { fileURLToPath } from 'url';
 
 import toolsRoutes from './routes/tools.js';
 import usersRoutes from './routes/users.js';
 import pagesRoutes from './routes/pages.js';
 import triviaRoutes from './routes/trivia.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const app = express();
 
