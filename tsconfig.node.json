@@ -6,6 +6,7 @@
     "outDir": "./dist",
     "noEmit": false,
     "types": ["node"],
+    "skipLibCheck": true,
     "typeRoots": ["./node_modules/@types"]
   },
   "include": [
