@@ -4,7 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import toolsRoutes from './routes/tools.js';
+// import toolsRoutes from './routes/tools.js';
 import usersRoutes from './routes/users.js';
 // import pagesRoutes from './routes/pages.js';
 import triviaRoutes from './routes/trivia.js';
@@ -23,15 +23,15 @@ app.use((req, res, next) => {
 });
 
 // app.use('/api/pages', pagesRoutes);
-app.use('/api/tools', toolsRoutes);
+// app.use('/api/tools', toolsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/trivia', triviaRoutes);
 
 app.use(express.static(path.join(__dirname, 'dist', 'client')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
+// });
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
