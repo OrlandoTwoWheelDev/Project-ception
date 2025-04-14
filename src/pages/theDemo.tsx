@@ -12,11 +12,17 @@ const fetchTrivia = async (setCards: React.Dispatch<React.SetStateAction<TriviaC
     }
     const data = await response.json();
     console.log('Fetched data:', data);
+    
+    if (!data || !data.id || !data.question || !data.answer) {
+      throw new Error('Invalid trivia data');
+    }
+    
     setCards(data);
   } catch (error) {
     console.error('Error fetching trivia:', error);
   }
 };
+
 
 const TheDemo: React.FC = () => {
   const [cards, setCards] = useState<TriviaCard | null>(null);

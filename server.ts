@@ -2,15 +2,15 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-// import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url';
 
-import toolsRoutes from './routes/tools.js';
+// import toolsRoutes from './routes/tools.js';
 import usersRoutes from './routes/users.js';
 import pagesRoutes from './routes/pages.js';
 import triviaRoutes from './routes/trivia.js';
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -23,16 +23,16 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/pages', pagesRoutes);
-app.use('/api/tools', toolsRoutes);
+// app.use('/api/tools', toolsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/trivia', triviaRoutes);
 
 app.use(express.static(path.join(__dirname, 'dist', 'client')));
 
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) return next();
-  res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
-});
+// app.get('*', (req, res, next) => {
+//   if (req.path.startsWith('/api')) return next();
+//   res.sendFile(path.join(__dirname, 'dist', 'client', 'index.html'));
+// });
 
 import { Request, Response } from 'express';
 app.use((err: Error, req: Request, res: Response) => {

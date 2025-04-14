@@ -42,14 +42,14 @@ const loginUser = async (req: Request, res: Response) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-    
 
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
+    console.error('Error logging in user:', error);
     res.status(500).json({ message: 'Server Error' });
-    console.error('Error logging in user', error);
   }
 };
+
 
 export {
   registerUser,
