@@ -3,16 +3,16 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "node16",
-    "moduleResolution": "node16",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "noEmit": false,
     "types": ["node"]
   },
   "include": [
     "server.ts",
-    "controllers",
-    "routes",
-    "middleware",
-    "db"
+    "controllers/**/*",
+    "routes/**/*",
+    "middleware/**/*",
+    "db/**/*"
   ]
 }
