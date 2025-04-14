@@ -5,7 +5,8 @@
     "module": "node16",
     "outDir": "./dist",
     "noEmit": false,
-    "types": ["node"]
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": [
     "server.ts",
