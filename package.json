@@ -3,18 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "tsc --project tsconfig.node.json",
-    "build": "npm run build:server && npm run build:client",
-    "start": "node dist/server.js",
-    "postinstall": "npm run build",
-    "seed": "node --loader ts-node/esm db/seed.ts",
-    "clean": "rm -rf node_modules dist package-lock.json && npm install"
-  },
+    "scripts": {
+      "dev": "vite",
+      "build": "npm run build:server && npm run build:client",
+      "build:server": "tsc --project tsconfig.node.json",
+      "build:client": "vite build --outDir dist/client",
+      "start": "node dist/server.js",
+      "postinstall": "npm run build",
+      "seed": "node --loader ts-node/esm db/seed.ts",
+      "clean": "rm -rf node_modules dist package-lock.json && npm install",
+      "dev:server": "tsc --watch --project tsconfig.node.json"
+    },
   "dependencies": {
-    "@types/react-router-dom": "^5.3.3",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
@@ -53,6 +53,7 @@
     "@types/range-parser": "^1.2.7",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.2",
+    "@types/react-router-dom": "^5.3.3",
     "@types/send": "^0.17.4",
     "@types/serve-static": "^1.15.7",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
