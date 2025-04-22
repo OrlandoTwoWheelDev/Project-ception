@@ -4,10 +4,11 @@ import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import { pool } from '../db/index.js';
 
-const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response): Promise<void> => {
   const { username, password, email } = req.body;
   if (!username || !password || !email) {
-    return res.status(400).json({ message: 'Missing required fields' });
+    res.status(400).json({ message: 'Missing required fields' });
+    return;
   }
 
   try {
@@ -15,28 +16,36 @@ const registerUser = async (req: Request, res: Response) => {
     const query = 'INSERT INTO users (username, password_hash, email) VALUES ($1, $2, $3) RETURNING id';
     const values = [username, hashedPassword, email];
     const result = await pool.query(query, values);
-    
+
     const newUserId = result.rows[0].id;
-    res.status(201).json({ message: 'User created successfully', userId: newUserId });
+    res.status(201).json({ message: 'User registered', userId: newUserId });
   } catch (error) {
     console.error('Error registering user:', error);
-    res.status(500).json({ message: 'Error registering user' });
+    res.status(500).json({ message: 'Server Error' });
   }
 };
 
 
-const loginUser = async (req: Request, res: Response) => {
+
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
   try {
     const user = await getUserByUsername(username);
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!user) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
 
     const isMatch = await bcrypt.compare(password, user.password_hash);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!isMatch) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
 
     if (!process.env.JWT_SECRET) {
       throw new Error('JWT_SECRET is not defined');
     }
+
     const token = jwt.sign(
       { id: user.id, username: user.username },
       process.env.JWT_SECRET,
@@ -48,10 +57,4 @@ const loginUser = async (req: Request, res: Response) => {
     console.error('Error logging in user:', error);
     res.status(500).json({ message: 'Server Error' });
   }
-};
-
-
-export {
-  registerUser,
-  loginUser,
 };

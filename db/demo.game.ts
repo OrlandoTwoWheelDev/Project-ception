@@ -40,15 +40,4 @@ const getAllTriviaCards = async (): Promise<TriviaCard[] | undefined> => {
   }
 };
 
-// const deleteTriviaCard = async (id: number): Promise<void> => {
-//   try {
-//     await pool.query(`
-//       DELETE FROM trivia WHERE id = $1;
-//     `, [id]);
-//   } catch (err) {
-//     console.error(`Error Deleting Trivia Card with ID ${id}`, err);
-//   }
-// }
-
-
 export { createTriviaCard, getAllTriviaCards };

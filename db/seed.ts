@@ -84,8 +84,19 @@ const alignAnPrime = async () => {
 
   await createTables();
 
-  await Promise.all(users.map(user => createUsers(user.username, user.password, user.email)));
+  console.log('Users array:', users);  // Check the contents of the users array
 
+  // Handle errors in createUsers
+  await Promise.all(
+    users.map(async (user) => {
+      try {
+        await createUsers(user.username, user.password, user.email);
+      } catch (err) {
+        console.error(`Error creating user ${user.username}:`, err);
+      }
+    })
+  );
+  
   await createTool('Refrigerant Temp and Pressure Guages', 'Tool used to measure refrigerant temperature and pressures',
      'https://www.fieldpiece.com/product/jl3kh6-job-link-probes-charging-and-air-kit/');
   await createTool('Digital Manometer', 'Tool used to measure airflow static pressure',

@@ -5,6 +5,4 @@ const router = express.Router();
 
 router.get('/random', getRandomTrivia);
 
-// router.post('/create', createTriviaCard);
-
 export default router;

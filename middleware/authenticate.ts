@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { JWT_SECRET } from '../src/utils/env.js';
-import User from '../db/users.queries.js'
+import { User } from '../db/users.queries.js'
 
 
-const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader?.replace('Bearer ', '');
 
@@ -19,5 +19,3 @@ const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
     console.error('Error authenticating user', err);
   }
 };
-
-export { authenticateUser };

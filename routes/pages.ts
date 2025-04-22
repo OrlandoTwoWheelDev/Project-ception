@@ -1,9 +1,8 @@
-import express from 'express'
-const router = express.Router()
-import { Response } from 'express';
+import express from 'express';
+import { getHomePage } from '../controllers/pages.js';
 
-router.get('/', (res: Response) => {
-  res.send('Welcome to the Home Page!')
-})
+const router = express.Router();
+
+router.get('/', getHomePage);
 
 export default router;
